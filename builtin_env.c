@@ -1,62 +1,49 @@
+#include "shell.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdio.h>
-#include "shell.h"
-
-#define MAX_COMMAND_LENGTH 100
 
 /**
- * void executeCommand - Simple Shell
- * Description: A simple shell implementation that reads user input,
- *              executes commands, and provides an exit built-in command.
+ * executeCommand - entry point
+ * @char  - charcter
+ * Description: A simple shell implementation that executes the 'env' command
+ *              to print the current environment.
  * Return: 0 on success.
  */
 
-void executeCommand(char *command);
+	void executeCommand(char *command);
 
-int main(void)
-{
-	char command[MAX_COMMAND_LENGTH];
-
-	while (1)
+	int main(void)
 	{
-	printf("Shell > ");
-	fgets(command, sizeof(command), stdin);
-
-	/* Remove newline character from the command */
-	command[strcspn(command, "\n")] = '\0';
-
-	if (strcmp(command, "exit") == 0)
-	{
-	/* User entered 'exit', so we exit the shell */
-	break;
-	}
+	char command[] = "env";
 
 	executeCommand(command);
+
+	return (0);
 	}
 
-	return 0;
-	}
-
-void executeCommand(char *command)
+	void executeCommand(char *command)
 	{
 	pid_t pid = fork();
 
 	if (pid < 0)
 	{
-        /* Forking error occurred */
-		perror("Fork failed");
-		exit(EXIT_FAILURE);
-	} else if (pid == 0)
+	/* Forking error occurred */
+	write(STDERR_FILENO, "Fork failed\n", 12);
+	exit(EXIT_FAILURE);
+	}
+	else if (pid == 0)
 	{
 	/* Child process */
-	execlp(command, command, NULL);
+	char *args[] = {command, NULL};
+
+	execvp(args[0], args);
 
 	/* If exec fails, display error message and exit child process */
-	perror("Exec failed");
+	write(STDERR_FILENO, "Exec failed\n", 12);
 	exit(EXIT_FAILURE);
 	}
 	else
@@ -66,4 +53,4 @@ void executeCommand(char *command)
 	waitpid(pid, &status, 0);
 	}
 }
-}
+
