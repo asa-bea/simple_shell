@@ -76,12 +76,11 @@ int main(void)
 		}
 		else
 		{
-            int status; /* Handling Parent process */
+			int status; /* Handling Parent process */
 
-            waitpid(pid, &status, 0);
-        }
-    }
-
-    return (0);
+			waitpid(pid, &status, 0);
+		}
+	}
+	return (0);
 }
 

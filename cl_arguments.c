@@ -4,8 +4,9 @@
 
 #define MAX_ARGS 10
 
-int parse_arguments(char* command, char** args) {
-    char* token;
+int parse_arguments(char *command, char **args)
+{
+    char *token;
     int arg_count = 0;
 
     /* To Tokenize command line */
@@ -13,7 +14,7 @@ int parse_arguments(char* command, char** args) {
 
     if (token == NULL) { /* Empty Command */
 
-        return 0;
+        return (0);
     }
 
     /* Allocate memory and copy token */
