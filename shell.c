@@ -4,17 +4,19 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <stdio.h>
-#include "shell.c"
+#include "shell.h"
 
 /**
-  * executeCommand - entry point of function
-  * @char* command = NULL - Stores the command entered by the user
+  * main - entry point
+  * @executeCommand - entry point of function
+  * @char* command - Stores the command entered by the user
   * @size_t command_length - Stores the length of the command
   * @ssize_t num_bytes - Stores the number of bytes read by getline
   * @char* token - Stores the tokenized command
-  * @char* args[2] - Stores the arguments for execve
-  * @const char prompt[] - Prompt displayed to the user
-  * @const char error_msg[] =  Error message
+  * @char* args - Stores the arguments for execve
+  * @const char prompt - Prompt displayed to the user
+  * @const char error_msg -  Error message
+  * @command - command
   *
   * Return: 0 on success or 1 on failure.
   */
@@ -23,7 +25,6 @@ void executeCommand(char *command);
 int main(void)
 {
 	const char prompt[] = "Liza_Asa_Shell$ ";
-	const char error_msg[] = "Sorry, No such file or directory\n";
 	char *command = NULL;
 	size_t command_length = 0;
 	ssize_t num_bytes;
@@ -52,6 +53,18 @@ int main(void)
 
 	return (0);
 }
+
+
+ /**
+  * main - entry point
+  * @executeCommand - entry point of function
+  * @char* command - Stores the command entered by the user
+  * @ssize_t num_bytes - Stores the number of bytes read by getline
+  * @char* args - Stores the arguments for execve
+  * @command - command
+  *
+  * Return: 0 on success or 1 on failure.
+  */
 
 void executeCommand(char *command)
 {

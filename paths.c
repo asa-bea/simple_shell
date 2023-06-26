@@ -1,5 +1,3 @@
-#include "shell.h"
-
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,29 +8,41 @@
 #define MAX_ARGS 10
 #define PATH_MAX_LENGTH 1024
 
-int main(){
+/**
+  * @find_command_path -  Function to find the path of the command using the
+  * PATH environment variable
+  */
+int main(void)
+{
 
-// Function to find the path of the command using the PATH environment variable
 char* find_command_path(char* command)
+{
+    char *path = getenv("PATH");  // Get the value of the PATH environment variable
+    char *dir = strtok(path, ":");  // Tokenize the path using ":" as the delimiter
 
-	char* path = getenv("PATH");
-         char* dir = strtok(path, ":");
-
-    char cmd_path[PATH_MAX_LENGTH];
+    char cmd_path[PATH_MAX_LENGTH];  // Buffer to store the constructed command path
 
     while (dir != NULL) {
-        strncpy(cmd_path, dir, PATH_MAX_LENGTH);
-        strncat(cmd_path, "/", PATH_MAX_LENGTH - strlen(cmd_path) - 1);
-        strncat(cmd_path, command, PATH_MAX_LENGTH - strlen(cmd_path) - 1);
+        size_t dir_length = strlen(dir);
+        size_t cmd_length = strlen(command);
 
-        // Check if the constructed path is executable
-        if (access(cmd_path, X_OK) == 0) {
-            return strdup(cmd_path);
+        if (dir_length + 1 + cmd_length < PATH_MAX_LENGTH)
+	{
+		memcpy(cmd_path, dir, dir_length);
+		cmd_path[dir_length] = '/';  // Append "/" to the buffer
+            memcpy(cmd_path + dir_length + 1, command, cmd_length);
+            cmd_path[dir_length + 1 + cmd_length] = '\0';
+
+            /* Check if the constructed path is executable */
+            if (access(cmd_path, X_OK) == 0)
+	    {
+                return strdup(cmd_path);
+            }
         }
 
-        dir = strtok(NULL, ":");
+        dir = strtok(NULL, ":");  /* Move to the next directory in the path */
     }
 
-    return "";
+    return (NULL);  /* if Command not found in any directory of the PATH */
 }
 }
