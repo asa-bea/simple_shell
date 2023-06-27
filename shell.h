@@ -19,13 +19,20 @@
 #include <errno.h>
 
 
-
 /**
+<<<<<<< HEAD
   * struct args_s - structs typedef function
   * @token_array: array of strings
   * @command: a string
   */
 
+=======
+ * struct args_s - Structure for storing command arguments.
+ *
+ * @token_array: Array of tokens (arguments).
+ * @command: The command associated with the arguments.
+ */
+>>>>>>> 9502357c1b53547f019d698f102663ac8319638e
 typedef struct args_s
 {
 	char **token_array;
@@ -58,7 +65,7 @@ int _strcmp(char *str1, char *str2);
 void (*getbuiltin(char *command))(args_t *);
 char *find_command_path(char *command);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
-void execute_command(char **args);
+void execute_command(char *command);
 void display_error(void);
 void wait_for_child(pid_t pid, int *status);
 int parse_arguments(char *command, char **args);
@@ -78,6 +85,7 @@ void tokenize(args_t *argument);
 void free_arguments(args_t *argumentsi);
 void handle_non_interactive(args_t *arguments);
 void builtin_exit(char *arg);
+int check_command_existence(char *command);
 
 #define BUFFER_SIZE 1024
 #define BUFFER_SIZE_WRITE 1024
