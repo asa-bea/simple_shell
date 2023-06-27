@@ -20,19 +20,10 @@
 
 
 /**
-<<<<<<< HEAD
   * struct args_s - structs typedef function
   * @token_array: array of strings
   * @command: a string
   */
-
-=======
- * struct args_s - Structure for storing command arguments.
- *
- * @token_array: Array of tokens (arguments).
- * @command: The command associated with the arguments.
- */
->>>>>>> 9502357c1b53547f019d698f102663ac8319638e
 typedef struct args_s
 {
 	char **token_array;
@@ -54,12 +45,16 @@ typedef struct builtin_s
 } builtin_t;
 
 
-
-
-
-
-
+/**
+ * builtin_exit - Exit the shell.
+ * @arg: The exit code as a string.
+ *
+ * This function is a built-in command that is executed when
+ * It terminates the shell process with the specified exit
+ * exit code is used.
+ */
 void builtin_exit(char *arg)
+
 int _atoi(char *s);
 int _strcmp(char *str1, char *str2);
 void (*getbuiltin(char *command))(args_t *);
