@@ -37,7 +37,7 @@ typedef struct args_s
 
 char *find_command_path(char *command);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
-int execute_command(char *buffer);
+void execute_command(char **args);
 void display_error(void);
 void wait_for_child(pid_t pid, int *status);
 int parse_arguments(char *command, char **args);

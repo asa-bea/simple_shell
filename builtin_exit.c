@@ -57,9 +57,10 @@ char *read_line(void)
  * @line: The input line to be split
  *
  * Description: Splits the input line into individual tokens
- *              characters. Returns an array of strings, each element as token.
+ *               based on whitespace characters.
+ *               Returns an array of strings, each element is a token.
  *
- * Return: An array of strings, where each element is a token.
+ * Return: An array of strings, each element is a token from the input line.
  */
 char **split_line(char *line)
 {
@@ -89,9 +90,9 @@ char **split_line(char *line)
  * execute - Execute a command with arguments
  * @args: The array of arguments
  *
- * Description: Executes a command with the arg using the execvp system call.
- *              Command should be located in one of the directories in the PATH
- *              environment variable.
+ * Description: Executes a command with the provided arguments.
+ *              The command should be located in one of the directories
+ *              listed in the PATH environment variable.
  */
 void execute(char **args)
 {
@@ -99,6 +100,35 @@ void execute(char **args)
 	{
 		perror("execvp");
 		exit(EXIT_FAILURE);
+	}
+}
+
+/**
+ * execute_command - Execute command based on the provided args
+ * shell_exit - Built-in shell exit command
+ * @args: The array of arguments
+ *
+ * Description: Executes a command based on the provided args.
+ *              If the command is a built-in command.
+ *              Otherwise, the command is executed as an external program.
+ */
+void execute_command(char **args)
+{
+	if (args[0] == NULL)
+		return;
+
+	if (strcmp(args[0], "exit") == 0)
+	{
+		int status = 0;
+
+		if (args[1] != NULL)
+			status = atoi(args[1]);
+
+		exit(status);
+	}
+	else
+	{
+		execute(args);
 	}
 }
 
