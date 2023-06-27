@@ -48,18 +48,3 @@ void handle_non_interactive(args_t *arguments)
 	free(line);
 }
 
-/**
- * main: Entry point of the program
- *
- * This function demonstrates the usage of the handle_non_interactive function.
- */
-int main(void)
-{
-	/* Example usage */
-	args_t arguments;
-
-	handle_non_interactive(&arguments);
-
-	return (0);
-}
-

@@ -7,9 +7,9 @@
 #include "shell.h"
 
 /**
-  * main: entry point
-  * description: main function
-  * execCommand: entry point of function
+  * main - entry point
+  * description - main function
+  * execCommand - entry point of function
   * @ac: number of command line arguments passed to program
   * @argv: array of strings containing these arguments
   * Return: 0 on success or 1 on failure.
@@ -57,8 +57,8 @@ int main(int ac, char **argv)
 }
 
 /**
-  * execCommand: takes pararmeter *arguments foor command line
-  * description: execute command
+  * execCommand - takes pararmeter *arguments foor command line
+  * description - execute command
   * @arguments: argument passed
   */
 

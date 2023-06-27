@@ -21,8 +21,8 @@
 
 
 /**
-  * description: structs typedef function
-  * struct args_s - single linked list
+  * typedef struct args_s - structs typedef function
+  * struct_args_s - struct
   * @token_array: array of strings
   * command: a string
   */
@@ -55,7 +55,7 @@ int setenv(const char *variable, const char *value, int overwrite);
 int unsetenv(const char *variable);
 void tokenize(args_t *argument);
 void free_arguments(args_t *argumentsi);
-
+void handle_non_interactive(args_t *arguments);
 
 
 #define BUFFER_SIZE 1024
