@@ -52,7 +52,7 @@ int main(int ac, char **argv)
 
 	execCommand(&arguments);
 	}
-	free_arguments(&arguments)
+	free_arguments(&arguments);
 	return (0);
 }
 
