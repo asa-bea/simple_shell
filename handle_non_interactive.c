@@ -21,7 +21,7 @@ void handle_non_interactive(args_t *arguments)
 	ssize_t num;
 
 	/* Get input line */
-	num = getline(&line, &bufsize, stdin);
+	num = getline(&arguments->command, &bufsize, stdin);
 
 	if (num == -1)
 	{
