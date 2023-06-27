@@ -59,6 +59,7 @@ typedef struct builtin_exit
 }status;
 
 
+void _exit_status(args_t *argument);
 int _atoi(char *s);
 int _strcmp(char *str1, char *str2);
 void (*getbuiltin(char *command))(args_t *);

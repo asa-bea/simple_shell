@@ -6,14 +6,14 @@
 #define MAX_COMMAND_LENGTH 100
 
 /**
- * _exit - Terminate the shell process.
+ * _exit_status - Terminate the shell process.
  * @argument: Pointer to the argument structure.
  *
  * This function is called when the "exit" command is executed in the shell.
  * It terminates the shell process with the specified exit code, or 0 if no
  * exit code is provided.
  */
-void _exit(args_t *argument);
+void _exit_status(args_t *argument)
 {
 	int code = 0;
 

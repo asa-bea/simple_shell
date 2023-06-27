@@ -25,7 +25,9 @@ void executeCommand(char *command)
 	else if (pid == 0)
 	{
 		/* Child process */
-		char *args[] = {command, NULL};
+		char *args[2];
+		args[0] = command;
+		args[1] = NULL;
 
 		execvp(args[0], args);
 

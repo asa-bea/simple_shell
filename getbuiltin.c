@@ -9,7 +9,7 @@
 void (*getbuiltin(char *command))(args_t *)
 {
 	builtin_t builtins[] = {
-		{"exit", _exit},
+		{"exit", _exit_status},
 		{NULL, NULL}
 	};
 	int i;
