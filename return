@@ -7,11 +7,9 @@
 #include "shell.h"
 
 /**
-  * main: entry point
-  * description: main function
-  * execCommand: entry point of function
-  * @ac: number of command line arguments passed to program
-  * @argv: array of strings containing these arguments
+  * main - entry point
+  * @ac - number of command line arguments passed to program
+  * @argv - array of strings containing these arguments
   * Return: 0 on success or 1 on failure.
   */
 
@@ -22,13 +20,6 @@ int main(int ac, char **argv)
 	ssize_t num_bytes;
 	args_t arguments = {NULL, NULL};
 
-	(void) ac;
-	(void) argv;
-	if (!isatty(STDIN_FILENO))
-	{
-		handle_non_interactive(&arguments);
-		return (0);
-	}
 	while (1)
 	{
 	/* Display prompt */
@@ -48,21 +39,20 @@ int main(int ac, char **argv)
 	/* Remove trailing newline character */
 	arguments.command[num_bytes - 1] = '\0';
 
-	tokenize(&arguments);
+	tokenize(arguments);
 
-	execCommand(&arguments);
+	executeCommand(arguments);
 	}
-	free_arguments(&arguments)
+
 	return (0);
 }
 
-/**
-  * execCommand: takes pararmeter *arguments foor command line
-  * description: execute command
-  * @arguments: argument passed
+
+ /**
+  *
   */
 
-void execCommand(args_t *arguments)
+void executeCommand(args_t arguments)
 {
 	const char error_msg[] = "Sorry, No such file or directory\n";
 	pid_t pid;
@@ -78,7 +68,7 @@ void execCommand(args_t *arguments)
 	}
 	else if (pid == 0)
 	{ /* Handling Child process */
-	execve(arguments->token_array[0], arguments->token_array, NULL);
+	execve(arguments.token_array[0], arguments.token_array, NULL);
 
 	write(STDOUT_FILENO, error_msg, sizeof(error_msg) - 1);
 	free_arguments(arguments);

@@ -18,45 +18,45 @@
 #include <stdarg.h>
 #include <errno.h>
 
+
+
 /**
-  * main - entry point
-  * @command - command
-  * @arg: a string generated from getline that holds arguments
+  * description: structs typedef function
+  * struct args_s - single linked list
+  * @token_array: array of strings
+  * command: a string
   */
+
+typedef struct args_s
+{
+	char **token_array;
+	char *command;
+} args_t;
+
+
 
 char *find_command_path(char *command);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 int execute_command(char *buffer);
-<<<<<<< HEAD
-void executeCommand(char *command);
 void display_error(void);
 void wait_for_child(pid_t pid, int *status);
 int parse_arguments(char *command, char **args);
-=======
-int execute_command(char **args);
-
+void execCommand(args_t *arguments);
 void executeCommand(char *command);
-
-void display_error();
-void wait_for_child(pid_t pid, int* status);
-
+void wait_for_child(pid_t pid, int *status);
 void my_function(void);
-
+char *_strcpy(char *dest, char *src);
 char *read_line(void);
-char **split_line(char *line);
-void execute(char **args);
-int main(void);
-
-char *read_line(void);
+int _strlen(char *s);
 char **split_line(char *line);
 void execute(char **args);
 void shell_exit(char **args);
-
 int setenv(const char *variable, const char *value, int overwrite);
 int unsetenv(const char *variable);
+void tokenize(args_t *argument);
+void free_arguments(args_t *argumentsi);
 
-int main(int argc, char *argv[]);
->>>>>>> ff139e65af22a513291b45f442ecf09083f8a02b
+
 
 #define BUFFER_SIZE 1024
 #define BUFFER_SIZE_WRITE 1024
