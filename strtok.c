@@ -55,15 +55,15 @@ char *read_line(void)
 /**
  * split_line - Split a line into individual tokens
  * @line: The input line to be split
+ * @delimiters: The characters used as delimiters to split the line
  *
  * Description: Splits the input line into individual tokens
  *              characters. Returns an array of strings, each element as token.
  *
  * Return: An array of strings, where each element is a token.
  */
-char **split_line(char *line)
+char **split_line(char *line, char *delimiters)
 {
-	const char *delimiters = " \t\r\n\v\f";
 	char **tokens = NULL;
 	char *token;
 	int token_count = 0;

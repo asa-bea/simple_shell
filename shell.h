@@ -48,7 +48,7 @@ void my_function(void);
 char *_strcpy(char *dest, char *src);
 char *read_line(void);
 int _strlen(char *s);
-char **split_line(char *line);
+char **split_line(char *line, char *delimiters);
 void execute(char **args);
 void shell_exit(char **args);
 int setenv(const char *variable, const char *value, int overwrite);
@@ -56,7 +56,7 @@ int unsetenv(const char *variable);
 void tokenize(args_t *argument);
 void free_arguments(args_t *argumentsi);
 void handle_non_interactive(args_t *arguments);
-
+void builtin_exit(char *arg);
 
 #define BUFFER_SIZE 1024
 #define BUFFER_SIZE_WRITE 1024
