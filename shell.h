@@ -56,7 +56,7 @@ typedef struct builtin_s
 typedef struct builtin_exit
 {
 	char *args;
-}status;
+} status;
 
 
 void _exit_status(args_t *argument);
