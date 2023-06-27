@@ -53,7 +53,11 @@ typedef struct builtin_s
  * It terminates the shell process with the specified exit
  * exit code is used.
  */
-void builtin_exit(char *arg)
+typedef struct builtin_exit
+{
+	char *args;
+}status;
+
 
 int _atoi(char *s);
 int _strcmp(char *str1, char *str2);
