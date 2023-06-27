@@ -21,10 +21,9 @@
 
 
 /**
-  * typedef struct args_s - structs typedef function
-  * struct_args_s - struct
+  * struct args_s - structs typedef function
   * @token_array: array of strings
-  * command: a string
+  * @command: a string
   */
 
 typedef struct args_s
@@ -35,6 +34,28 @@ typedef struct args_s
 
 
 
+/**
+  * struct builtin_s - structs typedef function
+  * @command: a string
+  * @f: function pointer
+  */
+
+typedef struct builtin_s
+{
+	char *command;
+	void (*f)(args_t *);
+} builtin_t;
+
+
+
+
+
+
+
+void builtin_exit(char *arg)
+int _atoi(char *s);
+int _strcmp(char *str1, char *str2);
+void (*getbuiltin(char *command))(args_t *);
 char *find_command_path(char *command);
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 void execute_command(char **args);

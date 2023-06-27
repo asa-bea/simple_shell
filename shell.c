@@ -66,6 +66,14 @@ void execCommand(args_t *arguments)
 {
 	const char error_msg[] = "Sorry, No such file or directory\n";
 	pid_t pid;
+	void (*f)(args_t *);
+
+	f = getbuiltin(arguments->token_array[0]);
+	if (f != NULL)
+	{
+		f(arguments);
+		return;
+	}
 
 	pid = fork(); /* Fork a child process */
 

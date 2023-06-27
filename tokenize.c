@@ -22,7 +22,7 @@ void tokenize(args_t *argument)
 		token = strtok(NULL, " ");
 	}
 
-	argument->token_array = malloc(sizeof(char) * (n_tokens + 1));
+	argument->token_array = malloc(sizeof(char *) * (n_tokens + 1));
 
 	if (argument->token_array == NULL)
 	{
@@ -34,8 +34,8 @@ void tokenize(args_t *argument)
 
 	while (token != NULL)
 	{
-		argument->token_array[i] = malloc(sizeof(char) * (_strlen(token)
-					+ 1));
+		argument->token_array[i] = malloc(
+				sizeof(char) * (_strlen(token) + 1));
 
 		_strcpy(argument->token_array[i], token);
 		i++;

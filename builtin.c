@@ -9,30 +9,11 @@
  * shell - Simple shell implementation
  *
  */
-void shell(void)
+void _exit(args_t *argument)
 {
-	char command[MAX_COMMAND_LENGTH];
-	ssize_t numBytes;
+	int code = 0;
 
-	while (1)
-	{
-		write(STDOUT_FILENO, "$ ", 2);
-
-		numBytes = read(STDIN_FILENO, command, sizeof(command));
-		if (numBytes == -1)
-		{
-			exit(1);
-		}
-
-		command[numBytes - 1] = '\0';
-
-		if (strcmp(command, "exit") == 0)
-		{
-			exit(0);
-		} else
-		{
-			system(command);
-		}
-	}
+	if (argument->token_array[1] != NULL)
+		code = _atoi(argument->token_array[1]);
+	exit(code);
 }
-

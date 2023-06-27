@@ -8,34 +8,33 @@
  * @arguments: The arguments structure
  *
  * This function handles the non-interactive mode
- * of the program. It reads a line
- * of input, removes the newline character,
+ * of the program. It reads a arguments->command
+ * of input, removes the newarguments->command character,
  * tokenizes the arguments, executes the
  * command, and frees any allocated memory.
  */
 void handle_non_interactive(args_t *arguments)
 {
 	/* Declare variables */
-	char *line = NULL;
 	size_t bufsize = 0;
 	ssize_t num;
 
-	/* Get input line */
+	/* Get input arguments->command */
 	num = getline(&arguments->command, &bufsize, stdin);
 
 	if (num == -1)
 	{
-		printf("Error reading input.\n");
-		free(line);
+		perror("Error");
+		free(arguments->command);
 		exit(1);
 	}
 
-	/* Remove newline character */
-	if (line[num - 1] == '\n')
-		line[num - 1] = '\0';
+	/* Remove newarguments->command character */
+	if (arguments->command[num - 1] == '\n')
+		arguments->command[num - 1] = '\0';
 
 	/* Assign command to arguments structure */
-	arguments->command = line;
+	arguments->command = arguments->command;
 
 	/* Tokenize arguments */
 	tokenize(arguments);
@@ -45,6 +44,5 @@ void handle_non_interactive(args_t *arguments)
 
 	/* Free allocated memory */
 	free_arguments(arguments);
-	free(line);
 }
 
