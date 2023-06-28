@@ -8,47 +8,55 @@
 
 /**
  * my_getline - Custom getline function
- *
+ * @lineptr: A pointer to a pointer that will store the address of the buffer
+ * containing the read line.
+ * @n: A ptr to a variable that holds the size of the buffer pointed to lineptr
+ * @stream:A pointer to the FILE stream from which the line will be read
  * Description: Reads characters from standard input into a buffer
  *              using a static variable and minimizes the number of
  *              read system calls.
  *
  * Return: Line read from input, or NULL on failure or EOF.
  */
-char *my_getline(void)
+ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
-	static char buffer[BUFFER_SIZE];
-	static int buffer_index;
-	static int chars_read;
+	ssize_t bufsize = 128;
+	ssize_t characters = 0;
+	char *buffer = NULL, *temp;
+	ssize_t bytes_read;
 
-	char *line = NULL;
-	int line_index = 0;
-	int c;
+	buffer = malloc(bufsize * sizeof(char));
+	if (buffer == NULL)
+		return (-1);
 
-	while (1)
+	if (lineptr == NULL || n == NULL || stream == NULL)
+		return (-1); /* Invalid arguments*/
+	while ((bytes_read = read(fileno(stream), &buffer[characters], 1)) > 0)
 	{
-		/* If buffer_index is 0 or chars_read is 0, refill the buffer */
-		if (buffer_index == 0 || buffer_index == chars_read)
+		if (characters >= bufsize)
 		{
-			buffer_index = 0;
-			chars_read = fread(buffer, sizeof(char), BUFFER_SIZE, stdin);
-			if (chars_read == 0)
-				break;
+			bufsize += 128;
+			temp = malloc(bufsize * sizeof(char));
+			if (temp == NULL)
+			{
+				free(buffer);
+				return (-1);
+			}
+			buffer = temp;
 		}
+		characters++;
 
-		c = buffer[buffer_index++];
-		if (c == '\n' || c == EOF)
-		{
-			line[line_index++] = '\0';
+		if (buffer[characters - 1] == '\n')
 			break;
-		}
-
-		line = realloc(line, (line_index + 1) * sizeof(char));
-		line[line_index++] = c;
 	}
 
-	if (line == NULL && line_index == 0)
-		return (NULL);
+	if (characters == 0 && bytes_read == 0)
+		return (-1);
 
-	return (line);
+	buffer[characters] = '\0';
+
+	*lineptr = buffer;
+	*n = bufsize;
+
+	return (characters);
 }

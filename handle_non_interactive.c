@@ -20,7 +20,7 @@ void handle_non_interactive(args_t *arguments)
 	ssize_t num;
 
 	/* Get input arguments->command */
-	num = getline(&arguments->command, &bufsize, stdin);
+	num = my_getline(&arguments->command, &bufsize, stdin);
 
 	if (num == -1)
 	{

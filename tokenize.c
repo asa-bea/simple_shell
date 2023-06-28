@@ -14,12 +14,12 @@ void tokenize(args_t *argument)
 	cmd_cpy = malloc(sizeof(char) * (_strlen(argument->command) + 1));
 
 	_strcpy(cmd_cpy, argument->command);
-	token = strtok(cmd_cpy, " ");
+	token = _strtok(cmd_cpy, " ");
 
 	while (token != NULL)
 	{
 		n_tokens++;
-		token = strtok(NULL, " ");
+		token = _strtok(NULL, " ");
 	}
 
 	argument->token_array = malloc(sizeof(char *) * (n_tokens + 1));
@@ -30,7 +30,7 @@ void tokenize(args_t *argument)
 		return;
 	}
 	_strcpy(cmd_cpy, argument->command);
-	token = strtok(cmd_cpy, " ");
+	token = _strtok(cmd_cpy, " ");
 
 	while (token != NULL)
 	{
@@ -39,7 +39,7 @@ void tokenize(args_t *argument)
 
 		_strcpy(argument->token_array[i], token);
 		i++;
-		token = strtok(NULL, " ");
+		token = _strtok(NULL, " ");
 	}
 	argument->token_array[i] = NULL;
 

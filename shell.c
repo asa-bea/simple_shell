@@ -35,7 +35,7 @@ int main(int ac, char **argv)
 	write(STDOUT_FILENO, prompt, sizeof(prompt) - 1);
 
 	/* Read command line */
-	num_bytes = getline(&arguments.command, &command_length, stdin);
+	num_bytes = my_getline(&arguments.command, &command_length, stdin);
 
 	if (num_bytes == -1)
 	{
@@ -44,7 +44,6 @@ int main(int ac, char **argv)
 		free(arguments.command);
 		break;
 	}
-
 	/* Remove trailing newline character */
 	arguments.command[num_bytes - 1] = '\0';
 
