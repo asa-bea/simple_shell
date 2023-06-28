@@ -44,27 +44,11 @@ typedef struct builtin_s
 	void (*f)(args_t *);
 } builtin_t;
 
-
-/**
- * builtin_exit - Exit the shell.
- * @arg: The exit code as a string.
- *
- * This function is a built-in command that is executed when
- * It terminates the shell process with the specified exit
- * exit code is used.
- */
-typedef struct builtin_exit
-{
-	char *args;
-} status;
-
-
 void _exit_status(args_t *argument);
 int _atoi(char *s);
 int _strcmp(char *str1, char *str2);
 void (*getbuiltin(char *command))(args_t *);
 char *find_command_path(char *command);
-ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 void execute_command(char *command);
 void display_error(void);
 void wait_for_child(pid_t pid, int *status);
@@ -86,6 +70,13 @@ void free_arguments(args_t *argumentsi);
 void handle_non_interactive(args_t *arguments);
 void builtin_exit(char *arg);
 int check_command_existence(char *command);
+ssize_t my_getline(char **line, size_t *chars_read, FILE *stream);
+char *_memcpy(char *dest, char *src, unsigned int n);
+char *_strpbrk(char *s, char *accept);
+char *_strtok(char *str, const char *delim);
+unsigned int _strspn(char *s, char *accept);
+
+
 
 #define BUFFER_SIZE 1024
 #define BUFFER_SIZE_WRITE 1024

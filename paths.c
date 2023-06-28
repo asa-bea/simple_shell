@@ -1,3 +1,4 @@
+#include "shell.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,7 +16,7 @@
 int check_command_existence(char *command)
 {
 	char *path_env = getenv("PATH");
-	char *path = strtok(path_env, ":");
+	char *path = _strtok(path_env, ":");
 	char full_path[1024];
 
 	while (path != NULL)
@@ -24,7 +25,7 @@ int check_command_existence(char *command)
 		if (access(full_path, F_OK) == 0)
 			return (1);
 
-		path = strtok(NULL, ":");
+		path = _strtok(NULL, ":");
 	}
 
 	return (0);
@@ -44,14 +45,14 @@ void tokenize_command(char *command, char **args)
 	char *token;
 	int arg_count = 0;
 
-	token = strtok(command, " ");
+	token = _strtok(command, " ");
 
 	while (token != NULL && arg_count < MAX_ARGS)
 	{
 		args[arg_count] = strdup(token);
 		arg_count++;
 
-		token = strtok(NULL, " ");
+		token = _strtok(NULL, " ");
 	}
 
 	args[arg_count] = NULL;

@@ -18,7 +18,7 @@ int parse_arguments(char *command, char **args)
 	int arg_count = 0;
 
 	/* To Tokenize command line */
-	token = strtok(command, " ");
+	token = _strtok(command, " ");
 
 	if (token == NULL)
 	{ /* Empty Command */
@@ -32,7 +32,7 @@ int parse_arguments(char *command, char **args)
 		args[arg_count] = strdup(token);
 		arg_count++;
 
-		token = strtok(NULL, " ");
+		token = _strtok(NULL, " ");
 		if (token == NULL)
 		{
 			break;
