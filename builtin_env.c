@@ -27,12 +27,9 @@ void executeCommand(char *command)
 		/* Child process */
 		char *args[2];
 
-<<<<<<< HEAD
 		args[0] = command;
-=======
 		args[0] = command; i
 
->>>>>>> 25cb223b5b94d2ec8169bb09ee863118528917c7
 		args[1] = NULL;
 
 		execvp(args[0], args);
