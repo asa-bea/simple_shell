@@ -90,7 +90,7 @@ void execCommand(args_t *arguments)
 		{
 			if (i > 1)
 			{
-				free(arguments->token_array[i];
+				free(arguments->token_array[i]);
 				arguments->token_array[i] = NULL;
 			}
 			i++;
