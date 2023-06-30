@@ -47,3 +47,21 @@ int _atoi(char *s)
 
 	return (n);
 }
+
+/**
+  *
+  */
+ int isnumber(char *str)
+{
+	int i;
+	int len = _strlen(str);
+
+	for (; i < len; i++)
+	{
+		if (i == 0 && str[i] == '-')
+			continue;
+		if (str[i] < '0' && str[i] > '9')
+			return (0);
+	}
+	return (1);
+}

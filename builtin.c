@@ -19,5 +19,6 @@ void _exit_status(args_t *argument)
 
 	if (argument->token_array[1] != NULL)
 		code = _atoi(argument->token_array[1]);
+	free_arguments(argument);
 	exit(code);
 }
