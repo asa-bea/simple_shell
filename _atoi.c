@@ -55,9 +55,13 @@ int _atoi(char *s)
 {
 	int i;
 	int len = _strlen(str);
-	{
-	for (; i < len; i++)
-		if (s[a] >= '0' && s[a] <= '9')
-	}
 
+	for (; i < len; i++)
+	{
+		if (i == 0 && str[i] == '-')
+			continue;
+		if (str[i] < '0' && str[i] > '9')
+			return (0);
+	}
+	return (1);
 }
