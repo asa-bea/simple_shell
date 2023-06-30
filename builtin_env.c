@@ -28,7 +28,7 @@ void executeCommand(char *command)
 		char *args[2];
 
 		args[0] = command;
-		args[0] = command; i
+		args[0] = command;
 
 		args[1] = NULL;
 
