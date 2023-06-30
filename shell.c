@@ -66,6 +66,7 @@ void execCommand(args_t *arguments)
 	const char error_msg[] = "Sorry, No such file or directory\n";
 	pid_t pid;
 	void (*f)(args_t *);
+	int i = 0;
 
 	f = getbuiltin(arguments->token_array[0]);
 	if (f != NULL)
@@ -85,6 +86,15 @@ void execCommand(args_t *arguments)
 	}
 	else if (pid == 0)
 	{ /* Handling Child process */
+		while (arguments->token_array[i])
+		{
+			if (i > 1)
+			{
+				free(arguments->token_array[i];
+				arguments->token_array[i] = NULL;
+			}
+			i++;
+		}
 	execve(arguments->token_array[0], arguments->token_array, NULL);
 
 	write(STDOUT_FILENO, error_msg, sizeof(error_msg) - 1);
