@@ -60,7 +60,7 @@ int _atoi(char *s)
 	{
 		if (i == 0 && str[i] == '-')
 			continue;
-		if (str[i] < '0' && str[i] > '9')
+		if (str[i] < '0' || str[i] > '9')
 			return (0);
 	}
 	return (1);

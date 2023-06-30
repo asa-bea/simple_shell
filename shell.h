@@ -75,7 +75,7 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 char *_strpbrk(char *s, char *accept);
 char *_strtok(char *str, const char *delim);
 unsigned int _strspn(char *s, char *accept);
-int isnumber(char *str)
+int isnumber(char *str);
 
 
 #define BUFFER_SIZE 1024
