@@ -49,9 +49,11 @@ int _atoi(char *s)
 }
 
 /**
-  *
-  */
- int isnumber(char *str)
+* isnumber - Checks if a string represents a valid number.
+* @str: The input string to be checked.
+* Return: 1 if the string is a valid number, 0 otherwise.
+*/
+int isnumber(char *str)
 {
 	int i;
 	int len = _strlen(str);
